@@ -1,28 +1,61 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <base-link
+      v-if="this.$route.path === '/'"
+      :to="{
+        name: 'CreatePage',
+        path: '/create'
+      }"
+      :styles="linkStyle"
+    >Создать регион</base-link>
+    <base-link
+      v-else
+      :to="{
+        name: 'HomePage',
+        path: '/'
+      }"
+      :styles="linkStyle"
+    >Главная</base-link>
+    <div
+      class="poster"
+    ></div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BaseLink from './components/BaseComponents/BaseLink.vue';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      linkStyle: {
+        position: 'absolute',
+        top: '10px',
+        left: '10px',
+      },
+    };
+  },
+  components: { BaseLink },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  overflow-y: scroll;
+  min-width: 320px;
+}
+
+.poster {
+  width: 100%;
+  height: 30vh;
+  background: url("./assets/main-background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 </style>
