@@ -12,7 +12,33 @@
       </tr>
       <tr v-if="region.parent">
         <td>Место</td>
-        <td>{{region.parent.name}}</td>
+        <td>
+          <router-link
+            :to="{
+              name: 'RegionPage',
+              path: `/region/${region.parent.id}`,
+              params: {id: region.parent.id}
+            }"
+          >
+            {{region.parent.name}}
+          </router-link>
+        </td>
+      </tr>
+      <tr
+        v-if="region.children && region.children.length"
+      >
+        <td>Содержит</td>
+        <td>
+          <router-link
+            v-for="child in region.children"
+            :key="child.id"
+            :to="{
+              name: 'RegionPage',
+              path: `/region/${child.id}`,
+              params: {id: child.id}
+            }"
+          >{{child.name}}</router-link>
+        </td>
       </tr>
     </table>
   </div>
@@ -64,6 +90,20 @@ export default {
   padding: 10px;
   font-weight: bold;
   border: 1px solid #000;
+}
+
+.table td a {
+  color: #000;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.table td a:hover {
+  color: #274696;
+}
+
+.table td a:active {
+  color: #000;
 }
 
 @media screen and (max-width: 560px) {

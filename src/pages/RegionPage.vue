@@ -47,12 +47,17 @@ export default {
       return this.canDelete ? null : 'Данный регион имеет вложенные регионы';
     },
   },
+  watch: {
+    $route(to) {
+      this.getRegion(to.params.id);
+    },
+  },
   mounted() {
     this.getRegion();
   },
   methods: {
-    async getRegion() {
-      const { id } = this.$route.params;
+    async getRegion(id = this.$route.params.id) {
+      // const { id } = this.$route.params;
       const { data } = await axios.get(`https://salty-shelf-51947.herokuapp.com/api/region/${id}`);
       this.children = data.children ? data.children : [];
       this.region = data;
