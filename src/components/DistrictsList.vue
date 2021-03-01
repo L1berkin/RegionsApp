@@ -4,7 +4,6 @@
       <router-link
         :to="{
             name: 'RegionPage',
-            path: `/region/${region.id}`,
             params: {id: region.id}
           }"
       >
@@ -23,7 +22,6 @@
         <router-link
           :to="{
             name: 'RegionPage',
-            path: `/region/${area.id}`,
             params: {id: area.id}
           }"
         >{{area.name}}</router-link>

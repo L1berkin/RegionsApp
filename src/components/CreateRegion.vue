@@ -68,14 +68,22 @@ export default {
   computed: {
     validate() {
       const type = this.currentOption.value;
+      const re = /^[a-zA-Zа-я-А-Я]+$/gi;
+
       if (type === 1) {
-        return this.cityName.length;
+        return this.cityName.length
+        && re.test(this.cityName);
       }
       if (type === 2) {
-        return this.cityName.length && this.areaName.length;
+        return this.cityName.length
+        && this.areaName.length
+        && re.test(this.cityName);
       }
       if (type === 3) {
-        return this.cityName.length && this.areaName.length && this.districtName.length;
+        return this.cityName.length
+        && this.areaName.length
+        && this.districtName.length
+        && re.test(this.cityName);
       }
       return false;
     },
@@ -159,8 +167,9 @@ export default {
       return body;
     },
     async createAndRedirect() {
-      await this.sendRegion();
-      this.$router.push('/');
+      // await this.sendRegion();
+      // this.$router.push('/');
+      console.log('sdf');
     },
   },
 };
@@ -172,7 +181,7 @@ export default {
   max-width: 900px;
   padding: 20px;
   display: flex;
-  margin: 0 auto;
+  margin: 0 auto 30px;
   box-sizing: border-box;
   border-radius: 20px;
   box-shadow: 0 0 10px -5px #000;

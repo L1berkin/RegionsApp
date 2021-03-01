@@ -12,7 +12,6 @@
       v-else
       :to="{
         name: 'HomePage',
-        path: '/'
       }"
       :styles="linkStyle"
     >Главная</base-link>
@@ -48,6 +47,7 @@ body {
   font-family: sans-serif;
   overflow-y: scroll;
   min-width: 320px;
+  min-height: 100vh;
 }
 
 .poster {

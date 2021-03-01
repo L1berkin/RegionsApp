@@ -16,7 +16,6 @@
           <router-link
             :to="{
               name: 'RegionPage',
-              path: `/region/${region.parent.id}`,
               params: {id: region.parent.id}
             }"
           >
@@ -34,7 +33,6 @@
             :key="child.id"
             :to="{
               name: 'RegionPage',
-              path: `/region/${child.id}`,
               params: {id: child.id}
             }"
           >{{child.name}}</router-link>
@@ -93,6 +91,8 @@ export default {
 }
 
 .table td a {
+  display: block;
+  white-space: nowrap;
   color: #000;
   text-decoration: none;
   margin-right: 10px;
